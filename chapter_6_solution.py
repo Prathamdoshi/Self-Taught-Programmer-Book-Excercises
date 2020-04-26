@@ -1,4 +1,4 @@
-# chapter 5 exercise solutions
+# chapter 6 exercise solutions
 #--------------------------------------------------------------------------#
 
 # questions 1: Print every string in 'Camcus'
