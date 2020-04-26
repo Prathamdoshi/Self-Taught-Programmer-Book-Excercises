@@ -30,5 +30,5 @@ with open(file_path,"w",newline='') as f:
     for i in range(len(questions)):
         f.write('Question: ' + questions[i] + '\n')
         f.write('Response: ' + answers[i] + '\n')
-    print("Success! Please check the folder output under chapter_9_solution.")  
+    print("Success! Please check the folder output under chapter_9_solution/question_2 folder.")  
 
