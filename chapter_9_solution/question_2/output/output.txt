@@ -1,0 +1,7 @@
+Questions and Answers: 
+Question: What is your name? 
+Response: Pratham
+Question: How old are you? 
+Response: 24
+Question: What is your favorite color? 
+Response: Blue
