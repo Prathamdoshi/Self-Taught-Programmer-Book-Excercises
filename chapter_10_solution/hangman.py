@@ -50,6 +50,7 @@ print('Hangman: \n')
 hangman()
 
 game_start_string = "Press any key to start or 'q' to quit: "
+full_hangman_copy = full_hangman
 
 while input(game_start_string) != 'q': 
 
@@ -68,6 +69,7 @@ while input(game_start_string) != 'q':
         if sorted(user_response_list) == sorted(magic_word_list):
             print('You won the game! Good job on guessing!!')
             game_start_string = "Press any key to restart the game or 'q' to quit: "
+            full_hangman = full_hangman_copy
             break
 
     elif user_response not in magic_word:
