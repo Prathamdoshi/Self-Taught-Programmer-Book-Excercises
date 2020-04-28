@@ -1,89 +1,61 @@
-# libraries 
-import words as w
+# # libraries 
+# import words as w
 
-print('\n---------------HANGMAN---------------\n')
-print('Welcome User! Here are the rules for the game: ')
-print("""
-      1. We have chose a random 8 letter word from dictionary. 
-      2. You get 8 chances to guess the word. 
-      3. Choosing the wrong letter will result in # of letters left deduction.
-      4. To win the game, you have to guess the word in 8 tries or less. 
-      5. To make this game more difficult, we have left the repeat letters on. A repeated letter has to be guessed twice.
+# print('\n---------------HANGMAN---------------\n')
+# print('Welcome User! Here are the rules for the game: ')
+# print("""
+#       1. We have chose a random 8 letter word from dictionary. 
+#       2. You get 8 chances to guess the word. 
+#       3. Choosing the wrong letter will result in # of letters left deduction.
+#       4. To win the game, you have to guess the word in 8 tries or less. 
+#       5. To make this game more difficult, we have left the repeat letters on. A repeated letter has to be guessed twice.
 
-      Good Luck! 
-      """)
+#       Good Luck! 
+#       """)
 
-# entire hangman picture 
-full_hangman = [["|","-","-","-","-"],
-                ["|"," "," ","|"," "],
-                ["|"," "," ","O"," "],
-                ["|"," ","\\","|","/"],
-                ["|"," "," ","|"," "],
-                ["|"," ","/"," ","\\"]]   
+# stages = [
+#           "________      ",
+#           "|      |      ",
+#           "|      0      ",
+#           "|     /|\     ", 
+#           "|     / \     ",
+#           "|"]
 
-#hangman list
-hangman_list = ["[1][3]",
-                "[2][3]",
-                "[3][2]",
-                "[3][3]",
-                "[3][4]",
-                "[4][3]",
-                "[5][2]",
-                "[5][4]"]         
+        
+
+import random
+
 
 def hangman():
-    for i in full_hangman:
-        for j in i:
-            print(j,end=' ')
-        print(' ')
-
-# data
-#magic_word = w.generate_random_word()
-magic_word = 'prathamd' #word to be guessed
-magic_word_list = list(magic_word)
-
-# status variables
-number_of_chances = 8
-user_response_list = []
-
-print('Hangman: \n')
-hangman()
-
-game_start_string = "Press any key to start or 'q' to quit: "
-full_hangman_copy = full_hangman
-
-while input(game_start_string) != 'q': 
-
-   while number_of_chances > 0: 
-    
-    user_response = input("Guess the letter: ")
-
-    if user_response in magic_word: 
-        temp = magic_word.index(user_response)
-        string = "{}{}= '{}'".format("full_hangman",hangman_list[temp],user_response)
-        magic_word = magic_word.replace(user_response,'-',1)
-        user_response_list.append(user_response)
-        exec(string)
-        hangman()
-    
-        if sorted(user_response_list) == sorted(magic_word_list):
-            print('You won the game! Good job on guessing!!')
-            game_start_string = "Press any key to restart the game or 'q' to quit: "
-            full_hangman = full_hangman_copy
+    word_list = ["Python", "Java", "computer", "hacker", "painter"]
+    random_number = random.randint(0, 4)
+    word = word_list[random_number]
+    wrong_guesses = 0
+    stages = ["", "________      ", "|      |      ", "|      0      ", "|     /|\     ", "|     / \     ", "|"]
+    remaining_letters = list(word)
+    letter_board = ["__"] * len(word)
+    win = False
+    print('Welcome to Hangman')
+    while wrong_guesses < len(stages) - 1:
+        print('\n')
+        guess = input("Guess a letter")
+        if guess in remaining_letters:
+            character_index = remaining_letters.index(guess)
+            letter_board[character_index] = guess
+            remaining_letters[character_index] = '$'
+        else:
+            wrong_guesses += 1
+        print((' '.join(letter_board)))
+        print('\n'.join(stages[0: wrong_guesses + 1]))
+        if '__' not in letter_board:
+            print('You win! The word was:')
+            print(' '.join(letter_board))
+            win = True
             break
+    if not win:
+        print('\n'.join(stages[0: wrong_guesses]))
+        print('You lose! The words was {}'.format(word))
 
-    elif user_response not in magic_word:
-        number_of_chances = number_of_chances - 1
-        string = "{}{}= '{}'".format("full_hangman",hangman_list[number_of_chances]," ")
-        exec(string)
-        hangman()
-
-
-    print("")
-
-        
-
-        
-        
+hangman()
 
 
