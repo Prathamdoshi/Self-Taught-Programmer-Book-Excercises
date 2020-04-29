@@ -1,4 +1,4 @@
-# chapter 11 exercise solutions
+# chapter 12 exercise solutions
 #--------------------------------------------------------------------------#
 
 # questions 1: Defina a class called Apple with four instance variable that represent four attributes of an apple
