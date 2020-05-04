@@ -15,7 +15,8 @@ with open(filepath, 'r', newline= '') as f:
     file_reader = f.read().split('\n')
 
     for line in file_reader:
-        words.append(line)
+        if len(line) > 3:
+            words.append(line)
     
 def generate_random_word():
     """
