@@ -28,7 +28,6 @@ user_continue = True
 while user_continue:
 
     key_word = w.generate_random_word()
-    print("Key word: " + key_word + "\n")
 
     wrong_choice_number = 0
     guessed_word = []
@@ -43,12 +42,19 @@ while user_continue:
         if guessed_letter in key_word:
             dash_str = dash_str.replace('_ ', guessed_letter, 1)
             guessed_word.append(guessed_letter)
+        
+        if guessed_letter not in key_word:
+           for i in range(0,wrong_choice_number+1):
+               print(hangman[i])
+           wrong_choice_number = wrong_choice_number + 1
+
 
         if collections.Counter(sorted(guessed_word)) == collections.Counter(sorted(list(key_word))): 
             print ("Congratulations!! You guessed the word '{}' correctly.".format(key_word)) 
             break;
         
-
+    if wrong_choice_number >=6:
+        print('\nSorry you loss.')
         
     
     user_continue_response = input("Want to continue? 'y' for yes! 'n' for no: ")
