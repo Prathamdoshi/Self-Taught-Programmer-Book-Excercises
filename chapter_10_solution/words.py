@@ -4,7 +4,7 @@ import random
 
 # path to the file
 cwd = os.getcwd()
-filepath = os.path.join(cwd,"chapter_10_solution","data","words_raw.txt")
+filepath = os.path.join(cwd,"data","words_raw.txt")
 
 # container for the 8 letter words
 words = []
