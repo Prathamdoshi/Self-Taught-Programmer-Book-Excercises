@@ -1,5 +1,6 @@
 # libraries 
 import words as w
+import collections
 
 print('\n---------------HANGMAN---------------\n')
 print('Welcome User! Here are the rules for the game: ')
@@ -31,9 +32,24 @@ while user_continue:
 
     wrong_choice_number = 0
     guessed_word = []
+    dash_str = ' _ '*len(key_word)
 
     while wrong_choice_number < len(hangman):
-       
+        print("\nWord: ")
+        print(dash_str)
+        print("")
+        guessed_letter = input("Guess the letter: ")
+
+        if guessed_letter in key_word:
+            dash_str = dash_str.replace('_ ', guessed_letter, 1)
+            guessed_word.append(guessed_letter)
+
+        if collections.Counter(sorted(guessed_word)) == collections.Counter(sorted(list(key_word))): 
+            print ("Congratulations!! You guessed the word '{}' correctly.".format(key_word)) 
+            break;
+        
+
+        
     
     user_continue_response = input("Want to continue? 'y' for yes! 'n' for no: ")
     if user_continue_response == 'n':
